@@ -1,0 +1,6 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4435
+
+Syntax highlighting for the TLA+ specification language. TLA stands for the Temporal Logic of Actions. 
+
+The TLA home page is: http://research.microsoft.com/en-us/um/people/lamport/tla/tla.html
+It says: "TLA+ is based on the idea that the best way to describe things formally is with simple mathematics, and that a specification language should contain as little as possible beyond what is needed to write simple mathematics precisely. TLA+ is especially well suited for writing high-level specifications of concurrent and distributed systems."
