@@ -1,8 +1,13 @@
 " Vim syntax file
 " Language: TLA+ specification language
 " Maintainer: Diego Ongaro <ongaro@cs.stanford.edu>
-" Last Change: Wed Feb 13 02:00:03 PST 2013
-" Version: 1
+" Last Change: Sun Feb 17 14:07:00 PST 2013
+" Version: 2
+"
+" Version 2:
+" - adds TRUE and FALSE as booleans
+" - fixes highlighting ----- when there's not an even multiple of four
+" - fixes highlighting of nested multi-line comments
 
 if exists("b:current_syntax")
   finish
@@ -114,10 +119,13 @@ syn keyword tlaKeyword \union
 syn keyword tlaKeyword \uplus
 syn keyword tlaKeyword \wr
 
+
 syntax case ignore
 syn keyword tlaTodo contained todo xxx fixme
 syntax case match
 
+syn keyword tlaBoolean FALSE
+syn keyword tlaBoolean TRUE
 syn match tlaNumber "\<\d\+\>"
 syn region tlaString start=+"+ skip=+\\"+ end=+"+
 
@@ -131,13 +139,14 @@ syn match tlaOperator "\\E"
 
 syn match tlaSpecial "[{}'\[]]"
 
-syn match tlaDelimiter "----"
+syn match tlaDelimiter "-\{4,\}"
 
 " Comments. This is defined so late so that it overrides previous matches.
 syn region tlaComment start="\\\*" end="$" contains=tlaTodo
-syn region tlaComment start="(\*" end="\*)" contains=tlaTodo
+syn region tlaComment start="(\*" end="\*)" contains=tlaTodo,tlaComment
 
 " Link the rules to some groups.
+highlight link tlaBoolean        Boolean
 highlight link tlaComment        Comment
 highlight link tlaDelimiter      Delimiter
 highlight link tlaKeyword        Keyword
